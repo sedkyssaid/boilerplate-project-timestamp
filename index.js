@@ -21,6 +21,18 @@ app.get("/api/hello", (req, res) => {
   res.json({ greeting: "hello API" });
 });
 
+// Date endpoint
+app.get("/api/:date?", (req, res) => {
+  const { date } = req.params;
+  let unixDate = Math.floor(new Date().getTime() / 1000);
+  let utcDate = new Date();
+
+  res.json({
+    unix: unixDate,
+    utc: utcDate,
+  });
+});
+
 // listen for requests :)
 const listener = app.listen(process.env.PORT, () => {
   console.log(`Express delivery on: ${listener.address().port}!`);
