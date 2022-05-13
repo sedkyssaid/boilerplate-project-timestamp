@@ -1,24 +1,6 @@
 // init project
-require("dotenv").config();
 const express = require("express");
 const app = express();
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-});
-
-const timeSchema = new Schema({
-  unix: { type: Number, required: true },
-  utc: { type: String, required: true },
-});
-
-const Time = mongoose.model("Time", timeSchema);
-
-const createAndSaveTime = (done) => {
-  let time = new Time({});
-};
 
 // enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
 // so that your API is remotely testable by FCC
@@ -42,7 +24,3 @@ app.get("/api/hello", function (req, res) {
 const listener = app.listen(process.env.PORT, function () {
   console.log(`Express delivery on: ${listener.address().port}`);
 });
-
-
-exports.TimeModel = Time;
-exports.createAndSaveTime = createAndSaveTime;
